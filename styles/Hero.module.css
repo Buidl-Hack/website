@@ -1,2 +1,59 @@
 .hero {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  margin: 0 40px;
+  justify-content: center;
+}
+
+.drawing {
+  flex: 1 1 0;
+  width: 0;
+  height: 600px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  flex: 1 1 0;
+  width: 0;
+  font-size: 24px;
+}
+
+.actions {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+
+.actions button {
+  border-radius: 60px;
+  outline: none;
+  padding: 10px 40px;
+  font-size: 25px;
+  cursor: pointer;
+  font-weight: 700;
+  flex: 1 1 0;
+  width: 0;
+}
+
+.connect {
+  background: #fff278;
+  border: none;
+}
+
+.connect:active {
+  background: #f0e68a;
+}
+
+.signup {
+  background: rgba(255, 255, 255, 0);
+  border: solid 3px #fff;
+  color: #fff;
+}
+
+.signup:active {
+  background: rgba(255, 255, 255, 0.5);
 }

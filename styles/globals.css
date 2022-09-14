@@ -1,6 +1,19 @@
-body {
-  background: #0068ff;
+html {
   font-family: 'Space Grotesk';
 }
+
+body {
+  background: #0068ff;
+  color: #fff;
+  margin: 0;
+}
+
 main {
+}
+
+p,
+h1,
+h2,
+h3 {
+  margin: 0;
 }

@@ -1,4 +1,6 @@
 .title {
   font-family: 'Space Grotesk';
   text-transform: uppercase;
+  color: black;
+  padding: 20px 40px;
 }
