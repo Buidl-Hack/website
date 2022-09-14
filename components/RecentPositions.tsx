@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import style from '../styles/RecentPositions.module.css';
 
 interface IPosition {
@@ -7,28 +7,31 @@ interface IPosition {
   author: string;
 }
 
-const positions: IPosition[] = [];
-for (let i = 0; i < 100; i++) {
-  const date = new Date();
-  date.setDate(Math.ceil(Math.random() * 10 + 10));
-  positions.push({
-    openingDate: date.toDateString().split(' ').slice(0, 4).join(' '),
-    author: ['realkdi', 'weyonce', 'abdul', 'nuelgeek', 'adrien'][
-      Math.round(Math.random() * 4)
-    ],
-    title: [
-      'Freemote relance',
-      'Rule the world together',
-      'Get rich fast with us',
-      'Work hard 9-5',
-      'Night shift dev',
-    ][Math.round(Math.random() * 4)],
-  });
-}
-
 export default function RecentPositions() {
   const [positionsShown, setPositionsShown] = useState(3);
   const showMore = () => setPositionsShown(positionsShown + 3);
+  const [positions, setPositions] = useState<IPosition[]>([]);
+  useEffect(() => {
+    const a = [];
+    for (let i = 0; i < 100; i++) {
+      const date = new Date();
+      date.setDate(Math.ceil(Math.random() * 10 + 10));
+      a.push({
+        openingDate: date.toDateString().split(' ').slice(0, 4).join(' '),
+        author: ['realkdi', 'weyonce', 'abdul', 'nuelgeek', 'adrien'][
+          Math.round(Math.random() * 4)
+        ],
+        title: [
+          'Freemote relance',
+          'Rule the world together',
+          'Get rich fast with us',
+          'Work hard 9-5',
+          'Night shift dev',
+        ][Math.round(Math.random() * 4)],
+      });
+    }
+    setPositions(a);
+  }, []);
   return (
     <div className={style.recentPositions}>
       <h2>Recently listed positions</h2>
