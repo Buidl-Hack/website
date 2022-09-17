@@ -1,0 +1,16 @@
+.connectPage {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  height: 700px;
+}
+
+.createProfile {
+  font-weight: 700;
+  font-size: 45px;
+}
+
+.instructions {
+  font-size: 24px;
+}

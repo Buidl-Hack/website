@@ -9,8 +9,7 @@
 .drawing {
   flex: 1 1 0;
   width: 0;
-  height: 600px;
-  background: rgba(0, 0, 0, 0.5);
+  height: 500px;
 }
 
 .intro {
@@ -33,7 +32,8 @@
   justify-content: center;
 }
 
-.actions button {
+.actions button,
+.actions a {
   border-radius: 60px;
   outline: none;
   padding: 10px 40px;
@@ -42,11 +42,14 @@
   font-weight: 700;
   flex: 1 1 0;
   width: 0;
+  text-decoration: none;
+  text-align: center;
 }
 
 .connect {
   background: #fff278;
   border: none;
+  color: #000;
 }
 
 .connect:active {

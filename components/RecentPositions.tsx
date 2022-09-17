@@ -42,16 +42,26 @@ export default function RecentPositions() {
       <div className={style.positionsContainer}>
         <ol className={style.positionsList}>
           {positions.slice(0, positionsShown).map((position, index) => (
-            <li key={index} className={style.position}>
-              <div className={style.positionNft}></div>
-              <div className={style.positionDescription}>
-                <p className={style.positionTitle}>{position.title}</p>
-                <p className={style.positionOpeningDate}>
-                  Opened on {position.openingDate}
-                </p>
-                <p className={style.createdBy}>Created by @{position.author}</p>
+            <div key={index} className={style.positionContainer}>
+              <li className={style.position}>
+                <div className={style.positionNft}></div>
+                <div className={style.positionDescription}>
+                  <p className={style.positionTitle}>{position.title}</p>
+                  <p className={style.positionOpeningDate}>
+                    Opened on {position.openingDate}
+                  </p>
+                  <p className={style.createdBy}>
+                    Created by @{position.author}
+                  </p>
+                </div>
+              </li>
+              <div className={style.arrowButton}>
+                <span className={style.arrowBar}>
+                  <span className={style.arrowTip1}></span>
+                  <span className={style.arrowTip2}></span>
+                </span>
               </div>
-            </li>
+            </div>
           ))}
         </ol>
         <button className={style.loadMore} onClick={showMore}>
