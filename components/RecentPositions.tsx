@@ -18,7 +18,7 @@ export default function RecentPositions() {
       date.setDate(Math.ceil(Math.random() * 10 + 10));
       a.push({
         openingDate: date.toDateString().split(' ').slice(0, 4).join(' '),
-        author: ['realkdi', 'weyonce', 'abdul', 'nuelgeek', 'adrien'][
+        author: ['realkdi', 'weyonce', 'abdul', 'nuelgeek', 'fidex'][
           Math.round(Math.random() * 4)
         ],
         title: [

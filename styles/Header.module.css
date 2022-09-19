@@ -1,6 +1,6 @@
-.title {
-  font-family: 'Space Grotesk';
-  text-transform: uppercase;
-  color: black;
+.header {
+  display: flex;
   padding: 20px 40px;
+  justify-content: space-between;
+  align-items: center;
 }

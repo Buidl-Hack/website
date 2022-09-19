@@ -700,32 +700,29 @@
   dependencies:
     tslib "^2.4.0"
 
-"@tanstack/query-core@4.3.4":
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.3.4.tgz#b93da17232fda91ec08ef14d2ca1d8326fc599f2"
-  integrity sha512-NLAe3j5Vk1yYEtoPP5fPGPjRzkZPx67KUM3f14L3InziJZJ0wVecCh7uKfgYkbRKJSeq6PlbND7iuCGdTplN6Q==
+"@tanstack/query-core@4.3.8":
+  version "4.3.8"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.3.8.tgz#d5f07c1d9d4f83f16f0bed7f3b245fa0e557b037"
+  integrity sha512-AEUWtCNBIImFZ9tMt/P8V86kIhMHpfoJqAI1auGOLR8Wzeq7Ymiue789PJG0rKYcyViUicBZeHjggMqyEQVMfQ==
 
 "@tanstack/query-sync-storage-persister@^4.0.10":
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/@tanstack/query-sync-storage-persister/-/query-sync-storage-persister-4.3.4.tgz#073a13822bbe6f1fdf227651b258a3415e929fa8"
-  integrity sha512-F/pUWScw5ky/LDPdJ5YjEGenE9bcm0FOL6itKsUnMnNOPLE8YI0AMWc79XjkVeeZ5Vo3ojyzOdnWLqo2XD7g0Q==
+  version "4.3.9"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-sync-storage-persister/-/query-sync-storage-persister-4.3.9.tgz#b0a288bf78456e12c35ad0b3e8c834b49757a007"
+  integrity sha512-bp2ISPlrUUOio8p3ll6bQfu/jpIIgsgZlVjeuSDoucYYGpBn5YTYRpJ0vAL+5iMpJxp2Eb9LZky6SJJDjvXAqA==
   dependencies:
-    "@tanstack/react-query-persist-client" "4.3.4"
+    "@tanstack/react-query-persist-client" "4.3.9"
 
-"@tanstack/react-query-persist-client@4.3.4", "@tanstack/react-query-persist-client@^4.0.10":
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-query-persist-client/-/react-query-persist-client-4.3.4.tgz#42275ee33e924f83eec44135e5790158994e02fc"
-  integrity sha512-Bj4IX1r12teGnMIASymHoa5RI5D2omKklJ8+RPbWalgYsfD/OOGO2KQiFZGfsfbnj2xtkrgSq4dGxLOBmgdxXw==
-  dependencies:
-    "@tanstack/query-core" "4.3.4"
-    "@tanstack/react-query" "4.3.4"
+"@tanstack/react-query-persist-client@4.3.9", "@tanstack/react-query-persist-client@^4.0.10":
+  version "4.3.9"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query-persist-client/-/react-query-persist-client-4.3.9.tgz#246acb070b8083078b6cdbf813bd6dfa2f6596e3"
+  integrity sha512-oFZA8bo6BQHoQqJSHXTtIDaIAxbF46cQHwhF72FwiMvBhm6eEbySUIPhGAWah7Jys2t2RJIhJ1T+q9P0RRIjwg==
 
-"@tanstack/react-query@4.3.4", "@tanstack/react-query@^4.0.10":
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.3.4.tgz#91a4232a967de04a0662d63d53b18ecc3e11c7e2"
-  integrity sha512-IiAo+B8bxphEpO7xwLQaCptd2rY4Ef3pW1q9J3pT66G+J/st4QpGQ+cSm9iESp9ccRy1YNUk3klk/hQtWewl6g==
+"@tanstack/react-query@^4.0.10":
+  version "4.3.9"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.3.9.tgz#13332a1d4dd404baec24c2853883bcb3cc61ea92"
+  integrity sha512-odfDW6WiSntCsCh+HFeJtUys3UnVOjfJMhykAtGtYvcklMyyDmCv9BVBt5KlSpbk/qW3kURPFCDapO+BFUlCwg==
   dependencies:
-    "@tanstack/query-core" "4.3.4"
+    "@tanstack/query-core" "4.3.8"
     use-sync-external-store "^1.2.0"
 
 "@types/bn.js@^4.11.3":
@@ -1461,7 +1458,7 @@ browserify-aes@^1.2.0:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
-browserslist@^4.21.3:
+browserslist@^4.21.3, browserslist@^4.21.4:
   version "4.21.4"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.21.4.tgz#e7496bbc67b9e39dd0f98565feccdcb0d4ff6987"
   integrity sha512-CBHJJdDmgjl3daYjN5Cp5kbTf1mUhZoS+beLklHIvkOWscs83YAhLlF3Wsh/lciQYAcbBJgTOD44VtG31ZM4Hw==
@@ -1575,9 +1572,9 @@ caniuse-lite@^1.0.30001332:
   integrity sha512-N/od11RX+Gsk+1qY/jbPa0R6zJupEa0lxeBG598EbrtblxVCTJsQwbRBm6+V+rxpc5lHKdsXb9RY83cZIPLseA==
 
 caniuse-lite@^1.0.30001400:
-  version "1.0.30001402"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001402.tgz#aa29e1f47f5055b0d0c07696a67b8b08023d14c8"
-  integrity sha512-Mx4MlhXO5NwuvXGgVb+hg65HZ+bhUYsz8QtDGDo2QmaJS2GBX47Xfi2koL86lc8K+l+htXeTEB/Aeqvezoo6Ew==
+  version "1.0.30001406"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001406.tgz#d0146e7919635479f873b4507517b627f66ab269"
+  integrity sha512-bWTlaXUy/rq0BBtYShc/jArYfBPjEV95euvZ8JVtO43oQExEN/WquoqpufFjNu4kSpi5cy5kMbNvzztWDfv1Jg==
 
 chalk@^4.0.0, chalk@^4.1.1:
   version "4.1.2"
@@ -1670,11 +1667,11 @@ copy-to-clipboard@^3.3.1:
     toggle-selection "^1.0.6"
 
 core-js-compat@^3.25.1:
-  version "3.25.1"
-  resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.25.1.tgz#6f13a90de52f89bbe6267e5620a412c7f7ff7e42"
-  integrity sha512-pOHS7O0i8Qt4zlPW/eIFjwp+NrTPx+wTL0ctgI2fHn31sZOq89rDsmtc/A2vAX7r6shl+bmVI+678He46jgBlw==
+  version "3.25.2"
+  resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.25.2.tgz#7875573586809909c69e03ef310810c1969ee138"
+  integrity sha512-TxfyECD4smdn3/CjWxczVtJqVLEEC2up7/82t7vC0AzNogr+4nQ8vyF7abxAuTXWvjTClSbvGhU0RgqA4ToQaQ==
   dependencies:
-    browserslist "^4.21.3"
+    browserslist "^4.21.4"
 
 core-js-pure@^3.20.2:
   version "3.25.1"
