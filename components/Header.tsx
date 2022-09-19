@@ -2,11 +2,12 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useAccount } from 'wagmi';
 import style from '../styles/Header.module.css';
-import { shorten } from '../utils';
+import { AddressButton } from './AddressButton';
 
 export default function Header() {
   const { pathname } = useRouter();
   const { address } = useAccount();
+  const showAddressButton = address !== undefined && pathname !== '/';
   return (
     <header className={style.header}>
       <Link href="/" passHref>
@@ -16,9 +17,7 @@ export default function Header() {
           </h1>
         </a>
       </Link>
-      {address !== undefined && pathname !== '/' && (
-        <button className={style.addressButton}>{shorten(address)}</button>
-      )}
+      {showAddressButton && <AddressButton address={address} />}
     </header>
   );
 }

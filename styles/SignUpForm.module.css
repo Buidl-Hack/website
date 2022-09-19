@@ -31,7 +31,7 @@
   grid-column: 1/3;
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 .mint {
@@ -45,8 +45,22 @@
   cursor: pointer;
   font-weight: 700;
   text-decoration: none;
+  margin-top: 40px;
 }
 .mint:disabled {
   opacity: 0.6;
   cursor: default;
+}
+
+.createProfile {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.createProfile h2 {
+  font-weight: 700;
+  font-size: 45px;
 }

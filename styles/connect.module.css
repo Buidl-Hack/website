@@ -2,13 +2,9 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 50px;
   height: 700px;
-}
-
-.createProfile {
-  font-weight: 700;
-  font-size: 45px;
+  margin-top: 50px;
 }
 
 .instructions {

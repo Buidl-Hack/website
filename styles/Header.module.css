@@ -5,13 +5,30 @@
   align-items: center;
 }
 .addressButton {
+  display: flex;
+  gap: 30px;
+  overflow: hidden;
   outline: none;
   background: none;
   border: solid 2px #fff;
-  padding: 20px 50px;
   border-radius: 100px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 24px;
+}
+.addressButton p {
+  padding: 20px 0 20px 40px;
+}
+
+.logOut {
   color: #fff;
   cursor: pointer;
   font-weight: 400;
   font-size: 24px;
+  background: none;
+  border: none;
+  padding: 20px 20px 20px 20px;
+  border-left: solid 2px #fff;
+  outline: none;
+  cursor: pointer;
 }
