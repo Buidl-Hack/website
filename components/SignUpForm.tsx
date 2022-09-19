@@ -58,12 +58,13 @@ export const SignUpForm = () => {
         <div className={style.formItemWide}>
           <WorldIDWidget
             actionId="wid_staging_ee85947aa1c7579c674636370c737b12" // obtain this from developer.worldcoin.org
-            signal="my_signal"
-            enableTelemetry
+            signal={address}
             onSuccess={(verificationResponse: any) => {
               console.log(verificationResponse);
-              // setReady(true);
+              setReady(true);
             }}
+            onInitError={(error) => console.log(error)}
+            onInitSuccess={() => console.log('success')}
             onError={(error) => console.error(error)}
           />
         </div>

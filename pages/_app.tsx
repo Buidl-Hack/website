@@ -1,8 +1,4 @@
-import {
-  darkTheme,
-  getDefaultWallets,
-  RainbowKitProvider,
-} from '@rainbow-me/rainbowkit';
+import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import '@rainbow-me/rainbowkit/styles.css';
 import type { AppProps } from 'next/app';
 import NextNProgress from 'nextjs-progressbar';
@@ -39,7 +35,7 @@ function Hubster({ Component, pageProps }: AppProps) {
         options={{ trickle: false, showSpinner: false }}
       />
       <WagmiConfig client={wagmiClient}>
-        <RainbowKitProvider chains={chains} theme={darkTheme()}>
+        <RainbowKitProvider chains={chains}>
           <Header />
           <main>
             <Component {...pageProps} />
