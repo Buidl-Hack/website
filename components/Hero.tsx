@@ -14,7 +14,7 @@ export default function Hero() {
         </p>
         <div className={style.actions}>
           <Link passHref href={'/connect'}>
-            <a className={style.connect}>connect wallet</a>
+            <a className={style.connect}>Let's go !</a>
           </Link>
         </div>
       </div>
