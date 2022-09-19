@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 import { ChangeEvent, useState } from 'react';
 import { useAccount } from 'wagmi';
 import style from '../styles/SignUpForm.module.css';
+import { shorten } from '../utils';
 
 const WorldIDWidget = dynamic<WidgetProps>(
   () => import('@worldcoin/id').then((mod) => mod.WorldIDWidget),
@@ -17,15 +18,16 @@ interface IFormItemProps {
 
 const FormItem = ({ label, input, onChange }: IFormItemProps) => {
   return (
-    <div className={style.formItem}>
+    <>
       <p className={style.formItemLabel}>{label}</p>
       <input
+        className={style.formItemInput}
         type="text"
         value={input}
         onChange={onChange}
         disabled={onChange === undefined}
       />
-    </div>
+    </>
   );
 };
 
@@ -44,11 +46,11 @@ export const SignUpForm = () => {
   if (address === undefined) return null;
   return (
     <form className={style.form}>
-      <FormItem label="wallet" input={address} />
+      <FormItem label="wallet" input={shorten(address)} />
       <FormItem label="@name" input={name} onChange={applyName} />
       <FormItem label="role" input={role} onChange={applyRole} />
       <FormItem label="experience" input={experience} onChange={applyExp} />
-      <div className={style.formItem}>
+      <div className={style.formItemWide}>
         <WorldIDWidget
           actionId="wid_staging_ee85947aa1c7579c674636370c737b12" // obtain this from developer.worldcoin.org
           signal="my_signal"
@@ -60,7 +62,11 @@ export const SignUpForm = () => {
           onError={(error) => console.error(error)}
         />
       </div>
-      <button disabled={!ready}>Mint my profile</button>
+      <div className={style.formItemWide}>
+        <button disabled={!ready} className={style.mint}>
+          Mint my profile
+        </button>
+      </div>
     </form>
   );
 };

@@ -16,7 +16,6 @@ export default function Hero() {
           <Link passHref href={'/connect'}>
             <a className={style.connect}>connect wallet</a>
           </Link>
-          <button className={style.signup}>sign up</button>
         </div>
       </div>
     </div>

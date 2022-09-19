@@ -29,7 +29,6 @@
 .actions {
   display: flex;
   gap: 40px;
-  justify-content: center;
 }
 
 .actions button,
@@ -40,10 +39,7 @@
   font-size: 25px;
   cursor: pointer;
   font-weight: 700;
-  flex: 1 1 0;
-  width: 0;
   text-decoration: none;
-  text-align: center;
 }
 
 .connect {
