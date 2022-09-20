@@ -1,7 +1,9 @@
 import { VerificationResponse, WidgetProps } from '@worldcoin/id';
 import dynamic from 'next/dynamic';
-import { ChangeEvent, useState } from 'react';
-import { useAccount, useProvider } from 'wagmi';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useAccount, useContract, useProvider } from 'wagmi';
+import { ABI, MUMBAI_CONTRACT } from '../constants';
+import { Contracts_Hubster_sol_Contract } from '../Contracts_Hubster_sol_Contract';
 import style from '../styles/SignUpForm.module.css';
 import { shorten } from '../utils';
 
@@ -35,7 +37,7 @@ export const SignUpForm = () => {
   const { address } = useAccount();
   const [isUnique, setIsUnique] = useState(false);
   const provider = useProvider();
-  /* const contract = useContract<Contracts_Hubster_sol_Contract>({
+  const contract = useContract<Contracts_Hubster_sol_Contract>({
     addressOrName: MUMBAI_CONTRACT,
     contractInterface: ABI,
     signerOrProvider: provider,
@@ -45,7 +47,7 @@ export const SignUpForm = () => {
       setIsUnique(true);
       console.log(author);
     });
-  }, [contract, setIsUnique]); */
+  }, [contract, setIsUnique]);
   const [name, setName] = useState('');
   const [role, setRole] = useState('');
   const [experience, setExp] = useState('');
@@ -72,12 +74,12 @@ export const SignUpForm = () => {
             actionId="wid_staging_4e245125700e19e33721f5a0ed5afc46"
             signal={address}
             onSuccess={(verificationResponse: VerificationResponse) => {
-              /* contract.verifyAndExecute(
+              contract.verifyAndExecute(
                 address,
                 verificationResponse.merkle_root,
                 verificationResponse.nullifier_hash,
                 verificationResponse.proof,
-              ); */
+              );
               console.log(verificationResponse);
             }}
             onInitError={(error) => console.log(error)}
@@ -90,7 +92,7 @@ export const SignUpForm = () => {
             <button
               disabled={!isUnique}
               className={style.mint}
-              // onClick={() => contract.mintProfileNft(address, 'hello')}
+              onClick={() => contract.mintProfileNft(address, 'hello')}
             >
               Mint my profile
             </button>
