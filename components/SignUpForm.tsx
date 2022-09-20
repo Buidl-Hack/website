@@ -1,7 +1,7 @@
-import { WidgetProps } from '@worldcoin/id';
+import { VerificationResponse, WidgetProps } from '@worldcoin/id';
 import dynamic from 'next/dynamic';
 import { ChangeEvent, useState } from 'react';
-import { useAccount } from 'wagmi';
+import { useAccount, useProvider } from 'wagmi';
 import style from '../styles/SignUpForm.module.css';
 import { shorten } from '../utils';
 
@@ -33,10 +33,22 @@ const FormItem = ({ label, input, onChange }: IFormItemProps) => {
 
 export const SignUpForm = () => {
   const { address } = useAccount();
+  const [isUnique, setIsUnique] = useState(false);
+  const provider = useProvider();
+  /* const contract = useContract<Contracts_Hubster_sol_Contract>({
+    addressOrName: MUMBAI_CONTRACT,
+    contractInterface: ABI,
+    signerOrProvider: provider,
+  });
+  useEffect(() => {
+    contract.on('ProofVerified', (author: string) => {
+      setIsUnique(true);
+      console.log(author);
+    });
+  }, [contract, setIsUnique]); */
   const [name, setName] = useState('');
   const [role, setRole] = useState('');
   const [experience, setExp] = useState('');
-  const [ready, setReady] = useState(false);
   const applyName = (e: ChangeEvent<HTMLInputElement>) =>
     setName(e.currentTarget.value);
   const applyRole = (e: ChangeEvent<HTMLInputElement>) =>
@@ -47,21 +59,26 @@ export const SignUpForm = () => {
   return (
     <>
       <div className={style.createProfile}>
-        <h2>Create your unique profile</h2>
+        <h2>Mint your unique profile</h2>
         <p>You can modify it later</p>
       </div>
-      <form className={style.form}>
+      <div className={style.form}>
         <FormItem label="@name" input={name} onChange={applyName} />
         <FormItem label="role" input={role} onChange={applyRole} />
         <FormItem label="experience" input={experience} onChange={applyExp} />
         <FormItem label="wallet" input={shorten(address)} />
         <div className={style.formItemWide}>
           <WorldIDWidget
-            actionId="wid_staging_ee85947aa1c7579c674636370c737b12" // obtain this from developer.worldcoin.org
+            actionId="wid_staging_4e245125700e19e33721f5a0ed5afc46"
             signal={address}
-            onSuccess={(verificationResponse: any) => {
+            onSuccess={(verificationResponse: VerificationResponse) => {
+              /* contract.verifyAndExecute(
+                address,
+                verificationResponse.merkle_root,
+                verificationResponse.nullifier_hash,
+                verificationResponse.proof,
+              ); */
               console.log(verificationResponse);
-              setReady(true);
             }}
             onInitError={(error) => console.log(error)}
             onInitSuccess={() => console.log('success')}
@@ -69,11 +86,17 @@ export const SignUpForm = () => {
           />
         </div>
         <div className={style.formItemWide}>
-          <button disabled={!ready} className={style.mint}>
-            Mint my profile
-          </button>
+          {
+            <button
+              disabled={!isUnique}
+              className={style.mint}
+              // onClick={() => contract.mintProfileNft(address, 'hello')}
+            >
+              Mint my profile
+            </button>
+          }
         </div>
-      </form>
+      </div>
     </>
   );
 };

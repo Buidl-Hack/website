@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "yarn build-contract && next dev",
+    "build": "yarn build-contract && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build-contract": "yarn build-abi && yarn build-abi-types",
+    "build-abi": "npx solc --abi --include-path node_modules/ --base-path . contracts/Hubster.sol -o public/ --pretty-json",
+    "build-abi-types": "npx typechain --target=ethers-v5 --out-dir . 'public/contracts_Hubster_sol_Contract.abi'"
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^0.6.0",
@@ -20,6 +23,8 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.3.0",
+    "@openzeppelin/contracts": "^4.7.3",
+    "@typechain/ethers-v5": "^10.1.0",
     "@types/node": "18.7.18",
     "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",
@@ -29,7 +34,10 @@
     "eslint-config-next": "12.3.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "hardhat": "^2.11.2",
     "prettier": "^2.7.1",
+    "solc": "^0.8.17",
+    "typechain": "^8.1.0",
     "typescript": "^4.8.3"
   },
   "prettier": {
