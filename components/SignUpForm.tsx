@@ -2,7 +2,7 @@ import { VerificationResponse, WidgetProps } from '@worldcoin/id';
 import dynamic from 'next/dynamic';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useAccount, useContract, useProvider } from 'wagmi';
-import { ABI, MUMBAI_CONTRACT } from '../constants';
+import { ABI, MUMBAI_CONTRACT, OPTIONS } from '../constants';
 import { Contracts_Hubster_sol_Contract } from '../Contracts_Hubster_sol_Contract';
 import style from '../styles/SignUpForm.module.css';
 import { shorten } from '../utils';
@@ -12,13 +12,52 @@ const WorldIDWidget = dynamic<WidgetProps>(
   { ssr: false },
 );
 
-interface IFormItemProps {
+interface IFormOption {
+  value: string;
+  text: string;
+}
+
+interface IFormItemSelectProps {
+  label: string;
+  input: string;
+  onChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
+  options: IFormOption[];
+}
+
+const FormItemSelect = ({
+  label,
+  input,
+  onChange,
+  options,
+}: IFormItemSelectProps) => {
+  return (
+    <>
+      <p className={style.formItemLabel}>{label}</p>
+      <select
+        className={style.formItemInput}
+        value={input}
+        onChange={onChange}
+        disabled={onChange === undefined}
+      >
+        {options.map((option, index) => (
+          <option key={index} value={option.value}>
+            {option.text}
+          </option>
+        ))}
+      </select>
+    </>
+  );
+};
+
+const FormItemInput = ({
+  label,
+  input,
+  onChange,
+}: {
   label: string;
   input: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-}
-
-const FormItem = ({ label, input, onChange }: IFormItemProps) => {
+}) => {
   return (
     <>
       <p className={style.formItemLabel}>{label}</p>
@@ -50,13 +89,22 @@ export const SignUpForm = () => {
   }, [contract, setIsUnique]);
   const [name, setName] = useState('');
   const [role, setRole] = useState('');
-  const [experience, setExp] = useState('');
+  const [role2, setRole2] = useState('');
+  const [exp, setExp] = useState('');
+  const [interests, setInterests] = useState('');
+  const [web3, setWeb3] = useState('');
   const applyName = (e: ChangeEvent<HTMLInputElement>) =>
     setName(e.currentTarget.value);
-  const applyRole = (e: ChangeEvent<HTMLInputElement>) =>
+  const applyRole = (e: ChangeEvent<HTMLSelectElement>) =>
     setRole(e.currentTarget.value);
-  const applyExp = (e: ChangeEvent<HTMLInputElement>) =>
+  const applyRole2 = (e: ChangeEvent<HTMLSelectElement>) =>
+    setRole2(e.currentTarget.value);
+  const applyExp = (e: ChangeEvent<HTMLSelectElement>) =>
     setExp(e.currentTarget.value);
+  const applyInt = (e: ChangeEvent<HTMLSelectElement>) =>
+    setInterests(e.currentTarget.value);
+  const applyWeb3 = (e: ChangeEvent<HTMLSelectElement>) =>
+    setWeb3(e.currentTarget.value);
   if (address === undefined) return null;
   return (
     <>
@@ -65,10 +113,38 @@ export const SignUpForm = () => {
         <p>You can modify it later</p>
       </div>
       <div className={style.form}>
-        <FormItem label="@name" input={name} onChange={applyName} />
-        <FormItem label="role" input={role} onChange={applyRole} />
-        <FormItem label="experience" input={experience} onChange={applyExp} />
-        <FormItem label="wallet" input={shorten(address)} />
+        <FormItemInput label="@name" input={name} onChange={applyName} />
+        <FormItemSelect
+          label="First role"
+          input={role}
+          onChange={applyRole}
+          options={OPTIONS.roles}
+        />
+        <FormItemSelect
+          label="Second role"
+          input={role2}
+          onChange={applyRole2}
+          options={OPTIONS.roles}
+        />
+        <FormItemSelect
+          label="Web3 experience"
+          input={web3}
+          onChange={applyWeb3}
+          options={OPTIONS.web3Exp}
+        />
+        <FormItemSelect
+          label="Overall experience"
+          input={exp}
+          onChange={applyExp}
+          options={OPTIONS.experience}
+        />
+        <FormItemSelect
+          label="Interest"
+          input={interests}
+          onChange={applyInt}
+          options={OPTIONS.interests}
+        />
+        <FormItemInput label="wallet" input={shorten(address)} />
         <div className={style.formItemWide}>
           <WorldIDWidget
             actionId="wid_staging_4e245125700e19e33721f5a0ed5afc46"

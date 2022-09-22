@@ -6,11 +6,10 @@ export default function Hero() {
     <div className={style.hero}>
       <img className={style.drawing} alt="hero" src="/hero.svg" />
       <div className={style.intro}>
-        <h2>web3 native network</h2>
+        <h2>A web3 native network</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-          nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam. Lorem
-          ipsum dolor sit amet, consectetuer adipiscing elit.{' '}
+          Personalize your work-profile NFT, share your work-history on-chain,
+          and connect with others to buidl{' '}
         </p>
         <div className={style.actions}>
           <Link passHref href={'/connect'}>

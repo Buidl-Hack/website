@@ -35,7 +35,7 @@ function Hubster({ Component, pageProps }: AppProps) {
         options={{ trickle: false, showSpinner: false }}
       />
       <WagmiConfig client={wagmiClient}>
-        <RainbowKitProvider chains={chains}>
+        <RainbowKitProvider chains={chains} modalSize="compact">
           <Header />
           <main>
             <Component {...pageProps} />
