@@ -1,9 +1,14 @@
 import { VerificationResponse, WidgetProps } from '@worldcoin/id';
+import { utils } from 'ethers';
 import dynamic from 'next/dynamic';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { useAccount, useContract, useProvider } from 'wagmi';
+import {
+  useAccount,
+  useContractEvent,
+  useContractWrite,
+  usePrepareContractWrite,
+} from 'wagmi';
 import { ABI, MUMBAI_CONTRACT, OPTIONS } from '../constants';
-import { Contracts_Hubster_sol_Contract } from '../Contracts_Hubster_sol_Contract';
 import style from '../styles/SignUpForm.module.css';
 import { shorten } from '../utils';
 
@@ -72,21 +77,51 @@ const FormItemInput = ({
   );
 };
 
+interface IVerifyArgs {
+  proof: number[];
+  nullifier_hash: string;
+  address: string;
+  merkle_root: string;
+}
+
 export const SignUpForm = () => {
   const { address } = useAccount();
-  const [isUnique, setIsUnique] = useState(false);
-  const provider = useProvider();
-  const contract = useContract<Contracts_Hubster_sol_Contract>({
+  const [response, setResponse] = useState<IVerifyArgs>();
+  useContractEvent({
     addressOrName: MUMBAI_CONTRACT,
     contractInterface: ABI,
-    signerOrProvider: provider,
+    eventName: 'ProofVerified',
+    listener: (event) => {
+      console.log('success', event);
+    },
   });
-  useEffect(() => {
-    contract.on('ProofVerified', (author: string) => {
-      setIsUnique(true);
-      console.log(author);
-    });
-  }, [contract, setIsUnique]);
+  const { config: mintConfig, error: mintError } = usePrepareContractWrite({
+    addressOrName: MUMBAI_CONTRACT,
+    contractInterface: ABI,
+    functionName: 'mintProfileNft',
+    args: [address, 'hello'],
+    enabled: address !== undefined,
+    overrides: {
+      gasLimit: utils.parseEther('0.001'),
+    },
+  });
+  const { config: verifyConfig, error: verifyError } = usePrepareContractWrite({
+    addressOrName: MUMBAI_CONTRACT,
+    contractInterface: ABI,
+    functionName: 'verifyAndExecute',
+    args: [
+      response?.address,
+      response?.merkle_root,
+      response?.nullifier_hash,
+      response?.proof,
+    ],
+    enabled: response !== undefined,
+    overrides: {
+      gasLimit: utils.parseEther('0.001'),
+    },
+  });
+  const mint = useContractWrite(mintConfig);
+  const verify = useContractWrite(verifyConfig);
   const [name, setName] = useState('');
   const [role, setRole] = useState('');
   const [role2, setRole2] = useState('');
@@ -105,12 +140,17 @@ export const SignUpForm = () => {
     setInterests(e.currentTarget.value);
   const applyWeb3 = (e: ChangeEvent<HTMLSelectElement>) =>
     setWeb3(e.currentTarget.value);
+  useEffect(() => {
+    if (response !== undefined) {
+      verify.write?.();
+    }
+  }, [response, verify]);
   if (address === undefined) return null;
   return (
     <>
       <div className={style.createProfile}>
-        <h2>Mint your unique profile</h2>
-        <p>You can modify it later</p>
+        <h2>Mint my unique profile</h2>
+        <p>It can be modified later</p>
       </div>
       <div className={style.form}>
         <FormItemInput label="@name" input={name} onChange={applyName} />
@@ -150,12 +190,14 @@ export const SignUpForm = () => {
             actionId="wid_staging_4e245125700e19e33721f5a0ed5afc46"
             signal={address}
             onSuccess={(verificationResponse: VerificationResponse) => {
-              contract.verifyAndExecute(
+              setResponse({
+                ...verificationResponse,
                 address,
-                verificationResponse.merkle_root,
-                verificationResponse.nullifier_hash,
-                verificationResponse.proof as any as number[],
-              );
+                proof: utils.defaultAbiCoder.decode(
+                  ['uint256[8]'],
+                  verificationResponse.proof,
+                )[0] as number[],
+              });
               console.log(verificationResponse);
             }}
             onInitError={(error) => console.log(error)}
@@ -166,9 +208,9 @@ export const SignUpForm = () => {
         <div className={style.formItemWide}>
           {
             <button
-              disabled={!isUnique}
+              disabled={verify.isSuccess}
               className={style.mint}
-              onClick={() => contract.mintProfileNft(address, 'hello')}
+              onClick={() => mint.write?.()}
             >
               Mint my profile
             </button>
