@@ -1,0 +1,76 @@
+.profilePage {
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+  margin: 100px 40px;
+}
+.profilePage h2 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 45px;
+}
+.profileBox {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.profileButtons {
+  outline: none;
+  background: none;
+  border: solid 2px #fff;
+  border-radius: 100px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 24px;
+  text-decoration: none;
+  padding: 20px 40px;
+}
+.buttonContainer {
+  display: flex;
+  flex-flow: row-reverse;
+}
+.profileContainer {
+  border: solid 2px #fff;
+  border-radius: 100px;
+  display: flex;
+  overflow: hidden;
+}
+.profileNft {
+  width: 500px;
+  background: rgba(0, 0, 0, 0.5);
+}
+.profileContent {
+  display: flex;
+  gap: 40px;
+  padding: 40px 40px;
+  flex-direction: column;
+  flex: 1 1;
+}
+.profileItems {
+  display: flex;
+  gap: 30px;
+}
+.profileItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.profileItem > p:first-of-type {
+  font-weight: 700;
+}
+.profileRolesBox {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.profileRoles {
+  display: flex;
+  gap: 10px;
+}
+.profileRoles p {
+  display: inline-block;
+  background: #000;
+  border-radius: 30px;
+  margin: 0;
+  padding: 5px 10px;
+}

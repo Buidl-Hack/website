@@ -12,7 +12,7 @@ export const OPTIONS = {
     { text: 'Product Designer', value: 'product-designer' },
     { text: 'Product Manager', value: 'product-manager' },
     { text: 'Project Manager', value: 'project-manager' },
-    { text: 'UI/UX dev', value: 'ui-ux-dev' },
+    { text: 'UI/UX ', value: 'ui-ux' },
     { text: 'Visual Designer', value: 'viz-designer' },
     { text: 'Analyst', value: 'analyst' },
     { text: 'Community Manager', value: 'community-manager' },
