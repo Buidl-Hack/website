@@ -154,7 +154,7 @@ export const SignUpForm = () => {
                 address,
                 verificationResponse.merkle_root,
                 verificationResponse.nullifier_hash,
-                verificationResponse.proof,
+                verificationResponse.proof as any as number[],
               );
               console.log(verificationResponse);
             }}
