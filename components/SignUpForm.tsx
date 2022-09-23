@@ -206,39 +206,40 @@ export const SignUpForm = () => {
             onError={(error) => console.error(error)}
           />
         </div>
-        <button
-          onClick={() => {
-            verify.write?.();
-            console.log(
-              'calling verifyAndExecute with following parameters:',
-              address,
-              '0x119400db5812bf79d64cb7160ead77d1a3cb96b18b79f231176741617d5c724e',
-              '0x071afa91cd6f788434334ccf4f88281406d314d8f1eb713253991b0f1538f0a9',
-              utils.defaultAbiCoder.decode(
-                ['uint256[8]'],
-                '0x0e0dfc33baf74753844ee437ba95e04a2d816ce5504ed46e5ce8d92a7785bd732b8cbec4cc0f7edd3e8bf4380d30f111963118ddf5ec007d6a81173dc871439a1ea903de9bd73af1270fd7c8773425362321bcdc7b049e47b355c20d94b9f7232007afdbd448233ec3d855d936bc7c66b0f44758b17cfb8a6c681e9dcfc400b52d57138d02b91d7e3402ab9d8b8df05b8b5211ee2c360c8f1508381ea7bf94d0304036066d749ee870ec2ac17ff05277ac5ec6c9ca43784df1c6693e70587f2f097ba905271829e1fa474e7656aeab1bbf9b7488a1a0dcbe6b56b8368838191422e808d8a0c258d106c3487f306dc8602738a4942e6c3e8d8beb62e0fb502e96',
-              )[0],
-            );
-          }}
-        >
-          verifyAndExecute
-        </button>
         <div className={style.formItemWide}>
-          {
-            <button
-              className={style.mint}
-              onClick={() => {
-                mint.write?.();
-                console.log(
-                  'Calling mintProfileNft with following params:',
-                  address,
-                  'hello',
-                );
-              }}
-            >
-              Mint my profile
-            </button>
-          }
+          <button
+            className={style.mint}
+            onClick={() => {
+              verify.write?.();
+              console.log(
+                'calling verifyAndExecute with following parameters:',
+                address,
+                '0x119400db5812bf79d64cb7160ead77d1a3cb96b18b79f231176741617d5c724e',
+                '0x071afa91cd6f788434334ccf4f88281406d314d8f1eb713253991b0f1538f0a9',
+                utils.defaultAbiCoder.decode(
+                  ['uint256[8]'],
+                  '0x0e0dfc33baf74753844ee437ba95e04a2d816ce5504ed46e5ce8d92a7785bd732b8cbec4cc0f7edd3e8bf4380d30f111963118ddf5ec007d6a81173dc871439a1ea903de9bd73af1270fd7c8773425362321bcdc7b049e47b355c20d94b9f7232007afdbd448233ec3d855d936bc7c66b0f44758b17cfb8a6c681e9dcfc400b52d57138d02b91d7e3402ab9d8b8df05b8b5211ee2c360c8f1508381ea7bf94d0304036066d749ee870ec2ac17ff05277ac5ec6c9ca43784df1c6693e70587f2f097ba905271829e1fa474e7656aeab1bbf9b7488a1a0dcbe6b56b8368838191422e808d8a0c258d106c3487f306dc8602738a4942e6c3e8d8beb62e0fb502e96',
+                )[0],
+              );
+            }}
+          >
+            verifyAndExecute
+          </button>
+        </div>
+        <div className={style.formItemWide}>
+          <button
+            className={style.mint}
+            onClick={() => {
+              mint.write?.();
+              console.log(
+                'Calling mintProfileNft with following params:',
+                address,
+                'hello',
+              );
+            }}
+          >
+            Mint my profile
+          </button>
         </div>
       </div>
     </>
