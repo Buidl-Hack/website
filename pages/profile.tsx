@@ -21,8 +21,8 @@ export default function Profile() {
     const a = [];
     for (let i = 0; i < 3; i++) {
       a.push({
-        nft: `/nfts/position/${Math.ceil(Math.random() * 20)}.png`,
-        role: OPTIONS.roles[Math.ceil(Math.random() * 15)].text,
+        nft: `/nfts/position/${Math.ceil(Math.random() * 19)}.png`,
+        role: OPTIONS.roles[Math.ceil(Math.random() * 14)].text,
         employer: 'Twitter',
         description: 'awesome',
         duration: 'jan 22 - dec 23',
@@ -78,7 +78,7 @@ export default function Profile() {
         </div>
       </div>
       <div>
-        <h2>Minted positions</h2>
+        <h2>My soulbound career</h2>
         <div className={style.profileBox}>
           <div className={style.buttonContainer}>
             <Link href="add-position" passHref>

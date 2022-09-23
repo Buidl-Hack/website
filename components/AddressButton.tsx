@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useDisconnect } from 'wagmi';
 import style from '../styles/Header.module.css';
 import { shorten } from '../utils';
@@ -11,7 +12,9 @@ export const AddressButton = ({ address }: IProps) => {
   const logOut = () => disconnect();
   return (
     <div className={style.addressButton}>
-      <p>{shorten(address)}</p>
+      <Link passHref href="/profile">
+        <a>{shorten(address)}</a>
+      </Link>
       <button className={style.logOut} onClick={logOut}>
         ×
       </button>

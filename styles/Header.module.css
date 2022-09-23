@@ -16,8 +16,10 @@
   font-weight: 400;
   font-size: 24px;
 }
-.addressButton p {
+.addressButton a {
   padding: 20px 0 20px 40px;
+  text-decoration: none;
+  color: #fff;
 }
 
 .logOut {
