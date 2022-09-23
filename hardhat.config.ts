@@ -11,7 +11,7 @@ import 'solidity-coverage';
 dotenv.config();
 
 task('accounts', 'Prints the list of accounts', async (taskArgs, hre) => {
-  const accounts = await hre.ethers.getSigners();
+  const accounts = await (hre as any).ethers.getSigners();
 
   for (const account of accounts) {
     console.log(account.address);
