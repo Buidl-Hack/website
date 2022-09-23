@@ -87,12 +87,13 @@ interface IVerifyArgs {
 export const SignUpForm = () => {
   const { address } = useAccount();
   const [response, setResponse] = useState<IVerifyArgs>();
+  const [isVerified, setVerified] = useState(false);
   useContractEvent({
     addressOrName: MUMBAI_CONTRACT,
     contractInterface: ABI,
     eventName: 'ProofVerified',
     listener: (event) => {
-      console.log('success', event);
+      setVerified(true);
     },
   });
   const { config: mintConfig, error: mintError } = usePrepareContractWrite({
@@ -206,23 +207,9 @@ export const SignUpForm = () => {
         <div className={style.formItemWide}>
           <button
             className={style.mint}
-            onClick={() => {
-              verify.write?.();
-            }}
-          >
-            verifyAndExecute
-          </button>
-        </div>
-        <div className={style.formItemWide}>
-          <button
-            className={style.mint}
+            disabled={!isVerified}
             onClick={() => {
               mint.write?.();
-              console.log(
-                'Calling mintProfileNft with following params:',
-                address,
-                'hello',
-              );
             }}
           >
             Mint my profile
