@@ -126,7 +126,7 @@ export const AddPosition = () => {
           {
             <button
               className={style.mint}
-              onClick={() => contract.mintProfileNft(address, 'hello')}
+              // onClick={() => contract.mintProfileNft(address, 'hello')}
             >
               Mint position
             </button>
