@@ -1,6 +1,6 @@
-export function shorten(address: string): string {
-  return `${address.slice(0, 5)}...${address.slice(
-    address.length - 3,
+export function shorten(address: string, chars = 3): string {
+  return `${address.slice(0, 2 + chars)}...${address.slice(
+    address.length - chars,
     address.length,
   )}`;
 }

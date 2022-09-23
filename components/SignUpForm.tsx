@@ -1,7 +1,7 @@
 import { VerificationResponse, WidgetProps } from '@worldcoin/id';
 import { utils } from 'ethers';
 import dynamic from 'next/dynamic';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import {
   useAccount,
   useContractEvent,
@@ -102,7 +102,7 @@ export const SignUpForm = () => {
     args: [address, 'hello'],
     enabled: address !== undefined,
     overrides: {
-      gasLimit: utils.parseEther('0.001'),
+      gasLimit: utils.parseEther('0.00000000001'),
     },
   });
   const { config: verifyConfig, error: verifyError } = usePrepareContractWrite({
@@ -110,14 +110,17 @@ export const SignUpForm = () => {
     contractInterface: ABI,
     functionName: 'verifyAndExecute',
     args: [
-      response?.address,
-      response?.merkle_root,
-      response?.nullifier_hash,
-      response?.proof,
+      address,
+      '0x119400db5812bf79d64cb7160ead77d1a3cb96b18b79f231176741617d5c724e',
+      '0x071afa91cd6f788434334ccf4f88281406d314d8f1eb713253991b0f1538f0a9',
+      utils.defaultAbiCoder.decode(
+        ['uint256[8]'],
+        '0x0e0dfc33baf74753844ee437ba95e04a2d816ce5504ed46e5ce8d92a7785bd732b8cbec4cc0f7edd3e8bf4380d30f111963118ddf5ec007d6a81173dc871439a1ea903de9bd73af1270fd7c8773425362321bcdc7b049e47b355c20d94b9f7232007afdbd448233ec3d855d936bc7c66b0f44758b17cfb8a6c681e9dcfc400b52d57138d02b91d7e3402ab9d8b8df05b8b5211ee2c360c8f1508381ea7bf94d0304036066d749ee870ec2ac17ff05277ac5ec6c9ca43784df1c6693e70587f2f097ba905271829e1fa474e7656aeab1bbf9b7488a1a0dcbe6b56b8368838191422e808d8a0c258d106c3487f306dc8602738a4942e6c3e8d8beb62e0fb502e96',
+      )[0],
     ],
-    enabled: response !== undefined,
+    enabled: address !== undefined,
     overrides: {
-      gasLimit: utils.parseEther('0.001'),
+      gasLimit: utils.parseEther('0.00000000001'),
     },
   });
   const mint = useContractWrite(mintConfig);
@@ -140,11 +143,6 @@ export const SignUpForm = () => {
     setInterests(e.currentTarget.value);
   const applyWeb3 = (e: ChangeEvent<HTMLSelectElement>) =>
     setWeb3(e.currentTarget.value);
-  useEffect(() => {
-    if (response !== undefined) {
-      verify.write?.();
-    }
-  }, [response, verify]);
   if (address === undefined) return null;
   return (
     <>
@@ -184,7 +182,7 @@ export const SignUpForm = () => {
           onChange={applyInt}
           options={OPTIONS.interests}
         />
-        <FormItemInput label="wallet" input={shorten(address)} />
+        <FormItemInput label="wallet" input={shorten(address, 5)} />
         <div className={style.formItemWide}>
           <WorldIDWidget
             actionId="wid_staging_4e245125700e19e33721f5a0ed5afc46"
@@ -198,19 +196,45 @@ export const SignUpForm = () => {
                   verificationResponse.proof,
                 )[0] as number[],
               });
-              console.log(verificationResponse);
+              console.log(
+                'Unique profile verification received:',
+                verificationResponse,
+              );
             }}
             onInitError={(error) => console.log(error)}
             onInitSuccess={() => console.log('success')}
             onError={(error) => console.error(error)}
           />
         </div>
+        <button
+          onClick={() => {
+            verify.write?.();
+            console.log(
+              'calling verifyAndExecute with following parameters:',
+              address,
+              '0x119400db5812bf79d64cb7160ead77d1a3cb96b18b79f231176741617d5c724e',
+              '0x071afa91cd6f788434334ccf4f88281406d314d8f1eb713253991b0f1538f0a9',
+              utils.defaultAbiCoder.decode(
+                ['uint256[8]'],
+                '0x0e0dfc33baf74753844ee437ba95e04a2d816ce5504ed46e5ce8d92a7785bd732b8cbec4cc0f7edd3e8bf4380d30f111963118ddf5ec007d6a81173dc871439a1ea903de9bd73af1270fd7c8773425362321bcdc7b049e47b355c20d94b9f7232007afdbd448233ec3d855d936bc7c66b0f44758b17cfb8a6c681e9dcfc400b52d57138d02b91d7e3402ab9d8b8df05b8b5211ee2c360c8f1508381ea7bf94d0304036066d749ee870ec2ac17ff05277ac5ec6c9ca43784df1c6693e70587f2f097ba905271829e1fa474e7656aeab1bbf9b7488a1a0dcbe6b56b8368838191422e808d8a0c258d106c3487f306dc8602738a4942e6c3e8d8beb62e0fb502e96',
+              )[0],
+            );
+          }}
+        >
+          verifyAndExecute
+        </button>
         <div className={style.formItemWide}>
           {
             <button
-              disabled={verify.isSuccess}
               className={style.mint}
-              onClick={() => mint.write?.()}
+              onClick={() => {
+                mint.write?.();
+                console.log(
+                  'Calling mintProfileNft with following params:',
+                  address,
+                  'hello',
+                );
+              }}
             >
               Mint my profile
             </button>

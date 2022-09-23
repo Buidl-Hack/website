@@ -9,8 +9,26 @@ import Header from '../components/Header';
 import HtmlHead from '../components/HtmlHead';
 import '../styles/globals.css';
 
+/* const ganache: Chain = {
+  id: 5777,
+  name: 'Ganache',
+  network: 'ganache',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'Ether',
+    symbol: 'ETH',
+  },
+  rpcUrls: {
+    default: 'https://127.0.0.1:7545',
+  },
+  testnet: false,
+}; */
+
 const { chains, provider, webSocketProvider } = configureChains(
-  [chain.polygonMumbai],
+  [
+    chain.polygonMumbai,
+    // ganache,
+  ],
   [publicProvider()],
 );
 
