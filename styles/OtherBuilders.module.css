@@ -28,4 +28,10 @@
   width: 175px;
   height: 175px;
   background: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.img {
+  width: 175px;
+  height: 175px;
 }

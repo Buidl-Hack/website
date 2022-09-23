@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import style from '../styles/RecentPositions.module.css';
 
@@ -44,7 +45,14 @@ export default function RecentPositions() {
           {positions.slice(0, positionsShown).map((position, index) => (
             <div key={index} className={style.positionContainer}>
               <li className={style.position}>
-                <div className={style.positionNft}></div>
+                <div className={style.positionNft}>
+                  <Image
+                    src={`/nfts/position/${index + 1}.png`}
+                    width={225}
+                    height={150}
+                    alt="position nft"
+                  />
+                </div>
                 <div className={style.positionDescription}>
                   <p className={style.positionTitle}>{position.title}</p>
                   <p className={style.positionOpeningDate}>

@@ -1,22 +1,30 @@
 import { useEffect, useState } from 'react';
-import style from '../styles/MostActive.module.css';
+import ReactTooltip from 'react-tooltip';
+import style from '../styles/OtherBuilders.module.css';
 
-export default function MostActive() {
+export default function OtherBuilders() {
   const [mostActive, setMostActive] = useState<string[]>([]);
   useEffect(() => {
     const a = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 20; i++) {
       a.push('nuelgeek', 'realkdi', 'weyonce', 'abdul', 'fidex');
     }
     setMostActive(a);
   }, []);
   return (
     <div className={style.mostActive}>
-      <h2>Most active members</h2>
+      <h2>Other builders</h2>
+      <ReactTooltip effect="solid" place="bottom" />
       <ul className={style.list}>
         {mostActive.map((member, index) => (
           <li className={style.member} key={index}>
-            {member}
+            <img
+              src={`/nfts/profile/${index + 1}.png`}
+              alt="nft"
+              className={style.img}
+              data-tip={member}
+              data-for={member}
+            />
           </li>
         ))}
       </ul>

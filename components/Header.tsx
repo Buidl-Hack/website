@@ -7,7 +7,6 @@ import { AddressButton } from './AddressButton';
 export default function Header() {
   const { pathname } = useRouter();
   const { address } = useAccount();
-  console.log(address);
   const showAddressButton = address !== undefined && pathname !== '/';
   return (
     <header className={style.header}>

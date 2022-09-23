@@ -1,4 +1,5 @@
-import { ethers } from 'hardhat';
+import '@nomiclabs/hardhat-ethers';
+import hre from 'hardhat';
 
 async function main() {
   const worldIDAddress = await fetch(
@@ -6,10 +7,11 @@ async function main() {
   )
     .then((res) => res.json() as Promise<{ key: string; value: string }[]>)
     .then(
-      (res) => res.find(({ key }) => key === 'staging.semaphore.wld.eth').value,
+      (res) =>
+        res.find(({ key }) => key === 'staging.semaphore.wld.eth')?.value,
     );
 
-  const ContractFactory = await ethers.getContractFactory('Contract');
+  const ContractFactory = await hre.ethers.getContractFactory('Contract');
   const contract = await ContractFactory.deploy(worldIDAddress);
 
   await contract.deployed();

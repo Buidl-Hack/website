@@ -1,6 +1,6 @@
 import abi from './contracts_Hubster_sol_Hubster.json';
 
-export const MUMBAI_CONTRACT = '0x9A5b61c533Cf39424225ED772A327059ad694005';
+export const MUMBAI_CONTRACT = '0x97712d536983FCfCc992a4CEC8aE1cDC746278ce';
 export const ABI = abi;
 export const OPTIONS = {
   roles: [
