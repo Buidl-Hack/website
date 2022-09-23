@@ -1,5 +1,5 @@
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import ReactTooltip from 'react-tooltip';
 import style from '../styles/OtherBuilders.module.css';
 
 export default function OtherBuilders() {
@@ -14,16 +14,20 @@ export default function OtherBuilders() {
   return (
     <div className={style.mostActive}>
       <h2>Other builders</h2>
-      <ReactTooltip effect="solid" place="bottom" />
       <ul className={style.list}>
         {mostActive.map((member, index) => (
-          <li className={style.member} key={index}>
-            <img
+          <li
+            className={style.member}
+            key={index}
+            data-tip={member}
+            data-for={member}
+            data-event="hover"
+          >
+            <Image
               src={`/nfts/profile/${index + 1}.png`}
               alt="nft"
-              className={style.img}
-              data-tip={member}
-              data-for={member}
+              width="175"
+              height="175"
             />
           </li>
         ))}
