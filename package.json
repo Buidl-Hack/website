@@ -9,7 +9,7 @@
     "lint": "next lint",
     "build-contract": "yarn build-abi && yarn build-abi-types",
     "build-abi": "npx solc --abi --include-path node_modules/ --base-path . contracts/Hubster.sol -o public/ --pretty-json",
-    "build-abi-types": "npx typechain --target=ethers-v5 --out-dir . 'public/contracts_Hubster_sol_Contract.abi' && cp public/contracts_Hubster_sol_Contract.abi ./contracts_Hubster_sol_Contract.json"
+    "build-abi-types": "npx typechain --target=ethers-v5 --out-dir . 'public/contracts_Hubster_sol_Hubster.abi' && cp public/contracts_Hubster_sol_Hubster.abi ./contracts_Hubster_sol_Hubster.json"
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^0.6.0",

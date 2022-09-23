@@ -1,4 +1,4 @@
-import abi from './contracts_Hubster_sol_Contract.json';
+import abi from './contracts_Hubster_sol_Hubster.json';
 
 export const MUMBAI_CONTRACT = '0x9A5b61c533Cf39424225ED772A327059ad694005';
 export const ABI = abi;
