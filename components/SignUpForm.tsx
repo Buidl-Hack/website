@@ -1,10 +1,12 @@
 import { VerificationResponse, WidgetProps } from '@worldcoin/id';
 import { utils } from 'ethers';
 import dynamic from 'next/dynamic';
-import { ChangeEvent, useState } from 'react';
+import { useRouter } from 'next/router';
+import { ChangeEvent, useEffect, useState } from 'react';
 import {
   useAccount,
   useContractEvent,
+  useContractRead,
   useContractWrite,
   usePrepareContractWrite,
 } from 'wagmi';
@@ -86,6 +88,7 @@ interface IVerifyArgs {
 
 export const SignUpForm = () => {
   const { address } = useAccount();
+  const router = useRouter();
   const [response, setResponse] = useState<IVerifyArgs>();
   const [isVerified, setVerified] = useState(false);
   useContractEvent({
@@ -93,8 +96,16 @@ export const SignUpForm = () => {
     contractInterface: ABI,
     eventName: 'ProofVerified',
     listener: (event) => {
+      console.info('Event: ProofVerified');
       setVerified(true);
     },
+  });
+  const { data: verifiedOnContract } = useContractRead({
+    addressOrName: MUMBAI_CONTRACT,
+    contractInterface: ABI,
+    functionName: 'isVerified',
+    args: [address],
+    enabled: address !== undefined,
   });
   const { config: mintConfig, error: mintError } = usePrepareContractWrite({
     addressOrName: MUMBAI_CONTRACT,
@@ -141,7 +152,31 @@ export const SignUpForm = () => {
     setInterests(e.currentTarget.value);
   const applyWeb3 = (e: ChangeEvent<HTMLSelectElement>) =>
     setWeb3(e.currentTarget.value);
-  if (address === undefined) return null;
+  useEffect(() => {
+    if (address === undefined) {
+      router.push('/connect');
+    }
+    if ((verifiedOnContract as any) === true) {
+      console.info(
+        'This address is already verified on the contract',
+        verifiedOnContract,
+      );
+      setVerified(true);
+    }
+    if (response !== undefined) {
+      console.info('Calling verifyAndExecute');
+      // const client = create('https://ipfs.infura.io:5001/api/v0');
+      const fetchData = async () => {
+        // const added = await client.add(file)
+        // const url = `https://ipfs.infura.io/ipfs/${added.path}`
+      };
+      verify.write?.();
+      fetchData();
+    }
+  }, [verifiedOnContract, response, verify, address, router]);
+  if (address === undefined) {
+    return null;
+  }
   return (
     <>
       <div className={style.createProfile}>
@@ -181,34 +216,34 @@ export const SignUpForm = () => {
           options={OPTIONS.interests}
         />
         <FormItemInput label="wallet" input={shorten(address, 5)} />
-        <div className={style.formItemWide}>
-          <WorldIDWidget
-            actionId="wid_staging_4e245125700e19e33721f5a0ed5afc46"
-            signal={address}
-            onSuccess={(verificationResponse: VerificationResponse) => {
-              setResponse({
-                ...verificationResponse,
-                address,
-                proof: utils.defaultAbiCoder.decode(
-                  ['uint256[8]'],
-                  verificationResponse.proof,
-                )[0] as number[],
-              });
-              console.log(
-                'Unique profile verification received:',
-                verificationResponse,
-              );
-            }}
-            onInitError={(error) => console.log(error)}
-            onInitSuccess={() => console.log('success')}
-            onError={(error) => console.error(error)}
-          />
-        </div>
+        {!isVerified && (
+          <div className={style.formItemWide}>
+            <WorldIDWidget
+              actionId="wid_staging_4e245125700e19e33721f5a0ed5afc46"
+              signal={address}
+              onSuccess={(verificationResponse: VerificationResponse) => {
+                console.info('Received worldcoin verification');
+                setResponse({
+                  ...verificationResponse,
+                  address,
+                  proof: utils.defaultAbiCoder.decode(
+                    ['uint256[8]'],
+                    verificationResponse.proof,
+                  )[0] as number[],
+                });
+              }}
+              onInitError={(error) => console.log(error)}
+              onInitSuccess={() => console.log('success')}
+              onError={(error) => console.error(error)}
+            />
+          </div>
+        )}
         <div className={style.formItemWide}>
           <button
             className={style.mint}
             disabled={!isVerified}
             onClick={() => {
+              console.info('Calling mintProfileNft');
               mint.write?.();
             }}
           >

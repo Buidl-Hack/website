@@ -11,7 +11,7 @@ export default function Connect() {
   const { data } = useContractRead({
     addressOrName: MUMBAI_CONTRACT,
     contractInterface: ABI,
-    functionName: 'isVerified',
+    functionName: 'hasProfileNft',
     args: [address],
     enabled: address !== undefined,
   });

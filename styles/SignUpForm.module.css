@@ -2,10 +2,7 @@
   display: grid;
   grid-template-columns: auto auto;
   gap: 20px 40px;
-  width: 60%;
-  position: absolute;
-  left: 50%;
-  margin-left: -30%;
+  justify-content: center;
   align-items: center;
 }
 

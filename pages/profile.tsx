@@ -1,7 +1,35 @@
+import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { OPTIONS } from '../constants';
 import style from '../styles/profile.module.css';
 
+interface IPosition {
+  duration: string;
+  description: string;
+  role: string;
+  employer: string;
+  nft: string;
+}
+
 export default function Profile() {
+  const [positions, setPositions] = useState<IPosition[]>([]);
+  useEffect(() => {
+    if (positions.length > 0) {
+      return;
+    }
+    const a = [];
+    for (let i = 0; i < 3; i++) {
+      a.push({
+        nft: `/nfts/position/${Math.ceil(Math.random() * 20)}.png`,
+        role: OPTIONS.roles[Math.ceil(Math.random() * 15)].text,
+        employer: 'Twitter',
+        description: 'awesome',
+        duration: 'jan 22 - dec 23',
+      });
+    }
+    setPositions(a);
+  }, [positions, setPositions]);
   return (
     <div className={style.profilePage}>
       <div>
@@ -13,7 +41,12 @@ export default function Profile() {
             </Link>
           </div>
           <div className={style.profileContainer}>
-            <div className={style.profileNft}></div>
+            <Image
+              src="/nfts/profile/5.png"
+              alt="profile nft"
+              width={200}
+              height={200}
+            />
             <div className={style.profileContent}>
               <div className={style.profileItems}>
                 <div className={style.profileItem}>
@@ -44,12 +77,35 @@ export default function Profile() {
           </div>
         </div>
       </div>
-      <h2>Work activity</h2>
       <div>
-        <div className={style.buttonContainer}>
-          <Link href="add-position" passHref>
-            <a className={style.profileButtons}>add position</a>
-          </Link>
+        <h2>Minted positions</h2>
+        <div className={style.profileBox}>
+          <div className={style.buttonContainer}>
+            <Link href="add-position" passHref>
+              <a className={style.profileButtons}>add position</a>
+            </Link>
+          </div>
+          <div className={style.positions}>
+            {positions.map((position, index) => (
+              <div key={index} className={style.position}>
+                <Image
+                  src={position.nft}
+                  width={580}
+                  height={400}
+                  alt="position nft"
+                />
+                <div className={style.positionContent}>
+                  <div className={style.positionContentMain}>
+                    <p>
+                      <b>{position.duration}</b>
+                    </p>
+                    <p>{position.description}</p>
+                  </div>
+                  <div className={style.positionRole}>{position.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
