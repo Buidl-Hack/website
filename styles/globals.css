@@ -1,5 +1,5 @@
-html {
-  font-family: 'Space Grotesk';
+* {
+  font-family: 'Space Grotesk' !important;
 }
 
 body {

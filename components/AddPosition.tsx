@@ -1,7 +1,5 @@
 import { ChangeEvent, useState } from 'react';
-import { useContract, useProvider } from 'wagmi';
-import { ABI, MUMBAI_CONTRACT, OPTIONS } from '../constants';
-import { Contracts_Hubster_sol_Contract } from '../Contracts_Hubster_sol_Contract';
+import { OPTIONS } from '../constants';
 import style from '../styles/SignUpForm.module.css';
 
 interface IFormOption {
@@ -65,12 +63,6 @@ const FormItemInput = ({
 };
 
 export const AddPosition = () => {
-  const provider = useProvider();
-  const contract = useContract<Contracts_Hubster_sol_Contract>({
-    addressOrName: MUMBAI_CONTRACT,
-    contractInterface: ABI,
-    signerOrProvider: provider,
-  });
   const [description, setDescription] = useState('');
   const [role, setRole] = useState('');
   const [exp, setExp] = useState('');
