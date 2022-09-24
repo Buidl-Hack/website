@@ -19,7 +19,7 @@ export default function Profile() {
       return;
     }
     const a = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) {
       a.push({
         nft: `/nfts/position/${Math.ceil(Math.random() * 19)}.png`,
         role: OPTIONS.roles[Math.ceil(Math.random() * 14)].text,
@@ -44,8 +44,8 @@ export default function Profile() {
             <Image
               src="/nfts/profile/5.png"
               alt="profile nft"
-              width={200}
-              height={200}
+              width={234}
+              height={234}
             />
             <div className={style.profileContent}>
               <div className={style.profileItems}>

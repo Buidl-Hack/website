@@ -13,7 +13,7 @@ export default function OtherBuilders() {
   }, []);
   return (
     <div className={style.mostActive}>
-      <h2>Other builders</h2>
+      <h2>Most active hubsters</h2>
       <ul className={style.list}>
         {mostActive.map((member, index) => (
           <li
