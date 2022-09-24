@@ -7,8 +7,7 @@ import "hardhat/console.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-
-contract Contract is ERC721URIStorage {
+contract Hubster is ERC721URIStorage {
     using ByteHasher for bytes;
 
     error InvalidNullifier();
