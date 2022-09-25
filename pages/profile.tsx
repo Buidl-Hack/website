@@ -96,7 +96,7 @@ export default function Profile() {
                   <p>
                     <b>{position.duration}</b>
                   </p>
-                  <p>{position.description}</p>
+                  <p>{/* position.description */ ' '}</p>
                 </div>
                 <div className={style.positionRole}>{position.role}</div>
               </div>
