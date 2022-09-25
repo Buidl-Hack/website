@@ -195,9 +195,11 @@ export const SignUpForm = () => {
       setVerified(true);
     }
     if (response !== undefined && !hasRequestedVerify) {
-      console.info('Calling verifyAndExecute');
-      verify.write?.();
-      requestVerify(true);
+      console.info('Calling verifyAndExecute with', address, response);
+      if (verify.write !== undefined) {
+        verify.write();
+        requestVerify(true);
+      }
     }
     if ((hasProfileNft as any) === true) {
       console.log('has profile nft');
