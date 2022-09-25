@@ -184,6 +184,7 @@ export const SignUpForm = () => {
   useEffect(() => {
     if (address === undefined) {
       router.push('/connect');
+      return;
     }
     if ((verifiedOnContract as any) === true) {
       console.info(
@@ -198,7 +199,8 @@ export const SignUpForm = () => {
     }
     if ((hasProfileNft as any) === true) {
       console.log('has profile nft');
-      return router.push('/profile');
+      router.push('/profile');
+      return;
     }
     if (CID !== undefined && hasRequestedNFT) {
       if (isUseWorldcoin) {
