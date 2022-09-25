@@ -100,6 +100,7 @@ export const SignUpForm = () => {
   const [isVerified, setVerified] = useState(false);
   const [CID, setCID] = useState<string>();
   const [hasRequestedNFT, requestProfileNFT] = useState(false);
+  const [hasRequestedVerify, requestVerify] = useState(false);
   useContractEvent({
     addressOrName: MUMBAI_CONTRACT,
     contractInterface: ABI,
@@ -193,9 +194,10 @@ export const SignUpForm = () => {
       );
       setVerified(true);
     }
-    if (response !== undefined) {
-      verify.write?.();
+    if (response !== undefined && !hasRequestedVerify) {
       console.info('Calling verifyAndExecute');
+      verify.write?.();
+      requestVerify(true);
     }
     if ((hasProfileNft as any) === true) {
       console.log('has profile nft');
@@ -225,6 +227,7 @@ export const SignUpForm = () => {
     CID,
     hasRequestedNFT,
     requestProfileNFT,
+    hasRequestedVerify,
   ]);
   if (address === undefined) {
     return null;

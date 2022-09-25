@@ -41,6 +41,7 @@ export default function Profile() {
       fetch('https://infura-ipfs.io/ipfs/' + (cid as any as string))
         .then((r) => r.json())
         .then((result) => {
+          console.log(result);
           setProfileData({
             name: result.name,
             role1: result.role,
