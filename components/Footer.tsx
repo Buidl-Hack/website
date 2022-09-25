@@ -10,7 +10,7 @@ export default function Footer() {
         <img src="/worldcoin.svg" alt="ethglobal" />
         <img src="/nftport.svg" alt="ethglobal" />
         <img src="/ipfs.svg" alt="ethglobal" />
-        <img src="/xmtp.svg" alt="ethglobal" />
+        {/* <img src="/xmtp.svg" alt="ethglobal" /> */}
       </div>
     </footer>
   );

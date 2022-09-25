@@ -17,16 +17,23 @@ contract Hubster is ERC721URIStorage {
     string actionId = "wid_staging_4e245125700e19e33721f5a0ed5afc46";
 
     using Counters for Counters.Counter;
-    Counters.Counter private _profileIds;
-    Counters.Counter private _workIds;
+    Counters.Counter public _profileIds;
     mapping(address => bool) public isVerified;
     mapping(address => bool) public hasProfileNft;
+    mapping(address => uint256) public profileToId;
 
     event ProofVerified(address user);
 
     constructor(IWorldID _worldId) ERC721("MyProfile", "PNFT"){
         worldId = _worldId;
         isVerified[0x04F7Cf1528eBE06cf86ae5cdAe060FD6Cfc3e1e2] = true;
+        isVerified[0xF90359B7953807f57715Fc6ac0Bf6F569a5DD269] = true;
+        isVerified[0xeA15A9902d395705Fa2D37ACDC71e3d95eF8084A] = true;
+    }
+
+    function addressTokenUri(address user) public view returns (string memory) {
+        string memory UriProfile = tokenURI(profileToId[user]);
+        return UriProfile;
     }
 
 
@@ -37,6 +44,7 @@ contract Hubster is ERC721URIStorage {
         _mint(user, newItemId);
         _setTokenURI(newItemId, tokenURI);
 
+        profileToId[user] = newItemId;
         _profileIds.increment();
         return newItemId;
     }
@@ -47,6 +55,7 @@ contract Hubster is ERC721URIStorage {
         _mint(user, newItemId);
         _setTokenURI(newItemId, tokenURI);
 
+        profileToId[user] = newItemId;
         _profileIds.increment();
         hasProfileNft[user] = true;
         return newItemId;
@@ -58,6 +67,7 @@ contract Hubster is ERC721URIStorage {
         _mint(user, newItemId);
         _setTokenURI(newItemId, tokenURI);
 
+        profileToId[user] = newItemId;
         _profileIds.increment();
         hasProfileNft[user] = true;
         return newItemId;

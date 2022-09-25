@@ -197,12 +197,15 @@ export const SignUpForm = () => {
       console.info('Calling verifyAndExecute');
     }
     if ((hasProfileNft as any) === true) {
-      router.push('/profile');
+      console.log('has profile nft');
+      return router.push('/profile');
     }
     if (CID !== undefined && hasRequestedNFT) {
       if (isUseWorldcoin) {
+        console.log('Calling mintProfileNft with CID', CID);
         mint.write?.();
       } else {
+        console.log('Calling localMintProfile with CID', CID);
         localMint.write?.();
       }
       requestProfileNFT(false);
@@ -327,10 +330,9 @@ export const SignUpForm = () => {
                 );
                 console.log('Storing data on IPFS');
                 const { path } = await client.add(file);
+                console.log('Received CID for IPFS: ', path);
                 setCID(path);
                 requestProfileNFT(true);
-                console.log('Received CID for IPFS: ', path);
-                console.info('Calling mintProfileNft with CID', path);
               };
               fetchData();
             }}

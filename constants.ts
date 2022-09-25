@@ -1,6 +1,6 @@
 import abi from './contracts_Hubster_sol_Hubster.json';
 
-export const MUMBAI_CONTRACT = '0x0FCfB655eBc8060F52cD01FedC3e73149f416ec1';
+export const MUMBAI_CONTRACT = '0x1D58712dbe59A27a18db8e2D82eeA8347784c722';
 export const ABI = abi;
 export const PROJECT_ID = process.env
   .NEXT_PUBLIC_INFURA_IPFS_PROJECT_ID as string;

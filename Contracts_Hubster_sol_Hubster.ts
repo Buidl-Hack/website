@@ -30,6 +30,8 @@ import type {
 export interface Contracts_Hubster_sol_HubsterInterface
   extends utils.Interface {
   functions: {
+    "_profileIds()": FunctionFragment;
+    "addressTokenUri(address)": FunctionFragment;
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
@@ -41,6 +43,7 @@ export interface Contracts_Hubster_sol_HubsterInterface
     "mintWorkNft(address,string)": FunctionFragment;
     "name()": FunctionFragment;
     "ownerOf(uint256)": FunctionFragment;
+    "profileToId(address)": FunctionFragment;
     "safeTransferFrom(address,address,uint256)": FunctionFragment;
     "safeTransferFrom(address,address,uint256,bytes)": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
@@ -53,6 +56,8 @@ export interface Contracts_Hubster_sol_HubsterInterface
 
   getFunction(
     nameOrSignatureOrTopic:
+      | "_profileIds"
+      | "addressTokenUri"
       | "approve"
       | "balanceOf"
       | "getApproved"
@@ -64,6 +69,7 @@ export interface Contracts_Hubster_sol_HubsterInterface
       | "mintWorkNft"
       | "name"
       | "ownerOf"
+      | "profileToId"
       | "safeTransferFrom(address,address,uint256)"
       | "safeTransferFrom(address,address,uint256,bytes)"
       | "setApprovalForAll"
@@ -74,6 +80,14 @@ export interface Contracts_Hubster_sol_HubsterInterface
       | "verifyAndExecute"
   ): FunctionFragment;
 
+  encodeFunctionData(
+    functionFragment: "_profileIds",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "addressTokenUri",
+    values: [PromiseOrValue<string>]
+  ): string;
   encodeFunctionData(
     functionFragment: "approve",
     values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
@@ -114,6 +128,10 @@ export interface Contracts_Hubster_sol_HubsterInterface
   encodeFunctionData(
     functionFragment: "ownerOf",
     values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "profileToId",
+    values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
     functionFragment: "safeTransferFrom(address,address,uint256)",
@@ -163,6 +181,14 @@ export interface Contracts_Hubster_sol_HubsterInterface
     ]
   ): string;
 
+  decodeFunctionResult(
+    functionFragment: "_profileIds",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "addressTokenUri",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(
@@ -192,6 +218,10 @@ export interface Contracts_Hubster_sol_HubsterInterface
   ): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "profileToId",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "safeTransferFrom(address,address,uint256)",
     data: BytesLike
@@ -302,6 +332,15 @@ export interface Contracts_Hubster_sol_Hubster extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
+    _profileIds(
+      overrides?: CallOverrides
+    ): Promise<[BigNumber] & { _value: BigNumber }>;
+
+    addressTokenUri(
+      user: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<[string]>;
+
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
@@ -359,6 +398,11 @@ export interface Contracts_Hubster_sol_Hubster extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
+    profileToId(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
     "safeTransferFrom(address,address,uint256)"(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
@@ -407,6 +451,13 @@ export interface Contracts_Hubster_sol_Hubster extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
   };
+
+  _profileIds(overrides?: CallOverrides): Promise<BigNumber>;
+
+  addressTokenUri(
+    user: PromiseOrValue<string>,
+    overrides?: CallOverrides
+  ): Promise<string>;
 
   approve(
     to: PromiseOrValue<string>,
@@ -465,6 +516,11 @@ export interface Contracts_Hubster_sol_Hubster extends BaseContract {
     overrides?: CallOverrides
   ): Promise<string>;
 
+  profileToId(
+    arg0: PromiseOrValue<string>,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
+
   "safeTransferFrom(address,address,uint256)"(
     from: PromiseOrValue<string>,
     to: PromiseOrValue<string>,
@@ -514,6 +570,13 @@ export interface Contracts_Hubster_sol_Hubster extends BaseContract {
   ): Promise<ContractTransaction>;
 
   callStatic: {
+    _profileIds(overrides?: CallOverrides): Promise<BigNumber>;
+
+    addressTokenUri(
+      user: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<string>;
+
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
@@ -570,6 +633,11 @@ export interface Contracts_Hubster_sol_Hubster extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<string>;
+
+    profileToId(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     "safeTransferFrom(address,address,uint256)"(
       from: PromiseOrValue<string>,
@@ -659,6 +727,13 @@ export interface Contracts_Hubster_sol_Hubster extends BaseContract {
   };
 
   estimateGas: {
+    _profileIds(overrides?: CallOverrides): Promise<BigNumber>;
+
+    addressTokenUri(
+      user: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
@@ -716,6 +791,11 @@ export interface Contracts_Hubster_sol_Hubster extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    profileToId(
+      arg0: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     "safeTransferFrom(address,address,uint256)"(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
@@ -766,6 +846,13 @@ export interface Contracts_Hubster_sol_Hubster extends BaseContract {
   };
 
   populateTransaction: {
+    _profileIds(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    addressTokenUri(
+      user: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     approve(
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
@@ -820,6 +907,11 @@ export interface Contracts_Hubster_sol_Hubster extends BaseContract {
 
     ownerOf(
       tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    profileToId(
+      arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
