@@ -36,6 +36,7 @@ export interface Contracts_Hubster_sol_HubsterInterface
     "hasProfileNft(address)": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
     "isVerified(address)": FunctionFragment;
+    "localMintProfile(address,string)": FunctionFragment;
     "mintProfileNft(address,string)": FunctionFragment;
     "mintWorkNft(address,string)": FunctionFragment;
     "name()": FunctionFragment;
@@ -58,6 +59,7 @@ export interface Contracts_Hubster_sol_HubsterInterface
       | "hasProfileNft"
       | "isApprovedForAll"
       | "isVerified"
+      | "localMintProfile"
       | "mintProfileNft"
       | "mintWorkNft"
       | "name"
@@ -95,6 +97,10 @@ export interface Contracts_Hubster_sol_HubsterInterface
   encodeFunctionData(
     functionFragment: "isVerified",
     values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "localMintProfile",
+    values: [PromiseOrValue<string>, PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
     functionFragment: "mintProfileNft",
@@ -172,6 +178,10 @@ export interface Contracts_Hubster_sol_HubsterInterface
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "isVerified", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "localMintProfile",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "mintProfileNft",
     data: BytesLike
@@ -324,6 +334,12 @@ export interface Contracts_Hubster_sol_Hubster extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
+    localMintProfile(
+      user: PromiseOrValue<string>,
+      tokenURI: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     mintProfileNft(
       user: PromiseOrValue<string>,
       tokenURI: PromiseOrValue<string>,
@@ -424,6 +440,12 @@ export interface Contracts_Hubster_sol_Hubster extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
+  localMintProfile(
+    user: PromiseOrValue<string>,
+    tokenURI: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   mintProfileNft(
     user: PromiseOrValue<string>,
     tokenURI: PromiseOrValue<string>,
@@ -523,6 +545,12 @@ export interface Contracts_Hubster_sol_Hubster extends BaseContract {
       arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<boolean>;
+
+    localMintProfile(
+      user: PromiseOrValue<string>,
+      tokenURI: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     mintProfileNft(
       user: PromiseOrValue<string>,
@@ -663,6 +691,12 @@ export interface Contracts_Hubster_sol_Hubster extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    localMintProfile(
+      user: PromiseOrValue<string>,
+      tokenURI: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     mintProfileNft(
       user: PromiseOrValue<string>,
       tokenURI: PromiseOrValue<string>,
@@ -762,6 +796,12 @@ export interface Contracts_Hubster_sol_Hubster extends BaseContract {
     isVerified(
       arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    localMintProfile(
+      user: PromiseOrValue<string>,
+      tokenURI: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     mintProfileNft(

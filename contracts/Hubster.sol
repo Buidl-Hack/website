@@ -52,6 +52,17 @@ contract Hubster is ERC721URIStorage {
         return newItemId;
     }
 
+    function localMintProfile(address user, string memory tokenURI) public returns(uint256) {
+        // Profile mint added without worldcoin verification incase worldcoin doesnt work
+        uint256 newItemId = _profileIds.current();
+        _mint(user, newItemId);
+        _setTokenURI(newItemId, tokenURI);
+
+        _profileIds.increment();
+        hasProfileNft[user] = true;
+        return newItemId;
+    }
+
     function verifyAndExecute(
         //string memory tokenURI,
         address receiver,
