@@ -1,4 +1,4 @@
-.recentPositions {
+.profiles {
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -6,22 +6,25 @@
   align-items: center;
 }
 
-.recentPositions h2 {
+.profiles h2 {
   font-weight: 700;
   font-size: 45px;
 }
 
 .filters {
   display: flex;
-  gap: 20px;
-  width: 830px;
+  gap: 10px;
+  width: 980px;
+}
+
+.filters > div {
+  flex: 1 1;
 }
 
 .filters button {
   border: solid 2px #fff;
-  flex: 1 1 0;
-  width: 0;
   height: 71px;
+  width: 100%;
   background: rgba(255, 255, 255, 0);
   outline: none;
   font-weight: 700;
@@ -39,61 +42,117 @@
   background: rgba(255, 255, 255, 0.5);
 }
 
-.positionsContainer {
+.rolesOptions {
+  position: absolute;
+  z-index: 1;
+  background: #679ef0;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  padding: 20px 40px;
+  box-shadow: 0 5px 10px #4d81cf;
+  animation: popin 0.3s ease;
+  width: 400px;
+}
+
+@keyframes popin {
+  0% {
+    opacity: 0;
+    scale: 0.8;
+    margin-top: -80px;
+  }
+  100% {
+    margin-top: 0px;
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.roleOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 20px;
+  cursor: pointer;
+}
+.roleOption:hover .checkbox {
+  background: rgba(255, 242, 120, 0.2);
+}
+
+.checkbox {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: solid 2px #fff;
+  transition: all 200ms ease;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.checkboxChecked {
+  background: #fff278;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+}
+
+.profilesContainer {
   display: flex;
   flex-direction: column;
   gap: 40px;
   align-items: center;
 }
 
-.positionsList {
+.profilesList {
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 830px;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
 }
 
-.position {
+.profile {
   border: 2px solid #fff;
   border-radius: 40px;
   overflow: hidden;
   display: flex;
-  height: 150px;
+  width: 480px;
 }
 
-.positionNft {
-  width: 225px;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+.profileNft {
 }
 
-.positionDescription {
+.profileDescription {
   padding: 20px 60px 20px 20px;
   flex: 1 1 0;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
   width: 0;
 }
 
-.positionTitle {
+.profileAuthor {
   font-weight: 700;
   font-size: 24px;
+  display: flex;
+  gap: 30px;
 }
 
-.positionOpeningDate {
-  font-weight: 400;
-  font-size: 24px;
+.profileRole {
+  background: #000;
+  border-radius: 30px;
+  margin: 0;
+  padding: 5px 15px;
+  align-self: flex-start;
+  font-size: initial;
 }
 
-.createdBy {
-  margin-top: 15px;
-  font-weight: 400;
-  font-size: 24px;
-  color: black;
+.experience {
 }
 
-.positionContainer {
-  position: relative;
+.web3Exp {
+}
+
+.interests {
 }
 
 .arrowButton {

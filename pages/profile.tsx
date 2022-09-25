@@ -32,80 +32,76 @@ export default function Profile() {
   }, [positions, setPositions]);
   return (
     <div className={style.profilePage}>
-      <div>
+      <div className={style.profileBox}>
         <h2>My profile</h2>
-        <div className={style.profileBox}>
-          <div className={style.buttonContainer}>
-            <Link href="edit" passHref>
-              <a className={style.profileButtons}>edit profile</a>
-            </Link>
-          </div>
-          <div className={style.profileContainer}>
-            <Image
-              src="/nfts/profile/5.png"
-              alt="profile nft"
-              width={234}
-              height={234}
-            />
-            <div className={style.profileContent}>
-              <div className={style.profileItems}>
-                <div className={style.profileItem}>
-                  <p>@realweyonce</p>
-                  <p>0xferfrefr</p>
-                </div>
-                <div className={style.profileItem}>
-                  <p>Experience</p>
-                  <p>4-5y</p>
-                </div>
-                <div className={style.profileItem}>
-                  <p>Web3 experience</p>
-                  <p>Expert</p>
-                </div>
-                <div className={style.profileItem}>
-                  <p>Interests</p>
-                  <p>DAOs</p>
-                </div>
+        <div className={style.buttonContainer}>
+          <Link href="edit" passHref>
+            <a className={style.profileButtons}>edit profile</a>
+          </Link>
+        </div>
+        <div className={style.profileContainer}>
+          <Image
+            src="/nfts/profile/5.png"
+            alt="profile nft"
+            width={234}
+            height={234}
+          />
+          <div className={style.profileContent}>
+            <div className={style.profileItems}>
+              <div className={style.profileItem}>
+                <p>@realweyonce</p>
+                <p>0xferfrefr</p>
               </div>
-              <div className={style.profileRolesBox}>
-                <p>Roles</p>
-                <div className={style.profileRoles}>
-                  <p>UI/UX</p>
-                  <p>Product designer</p>
-                </div>
+              <div className={style.profileItem}>
+                <p>Experience</p>
+                <p>4-5y</p>
+              </div>
+              <div className={style.profileItem}>
+                <p>Web3 experience</p>
+                <p>Expert</p>
+              </div>
+              <div className={style.profileItem}>
+                <p>Interests</p>
+                <p>DAOs</p>
+              </div>
+            </div>
+            <div className={style.profileRolesBox}>
+              <p>Roles</p>
+              <div className={style.profileRoles}>
+                <p>UI/UX</p>
+                <p>Product designer</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div>
+      <div className={style.profileBox}>
         <h2>My soulbound career</h2>
-        <div className={style.profileBox}>
-          <div className={style.buttonContainer}>
-            <Link href="add-position" passHref>
-              <a className={style.profileButtons}>add position</a>
-            </Link>
-          </div>
-          <div className={style.positions}>
-            {positions.map((position, index) => (
-              <div key={index} className={style.position}>
-                <Image
-                  src={position.nft}
-                  width={580}
-                  height={400}
-                  alt="position nft"
-                />
-                <div className={style.positionContent}>
-                  <div className={style.positionContentMain}>
-                    <p>
-                      <b>{position.duration}</b>
-                    </p>
-                    <p>{position.description}</p>
-                  </div>
-                  <div className={style.positionRole}>{position.role}</div>
+        <div className={style.buttonContainer}>
+          <Link href="add-position" passHref>
+            <a className={style.profileButtons}>add position</a>
+          </Link>
+        </div>
+        <div className={style.positions}>
+          {positions.map((position, index) => (
+            <div key={index} className={style.position}>
+              <Image
+                src={position.nft}
+                width={580}
+                height={400}
+                alt="position nft"
+              />
+              <div className={style.positionContent}>
+                <div className={style.positionContentMain}>
+                  <p>
+                    <b>{position.duration}</b>
+                  </p>
+                  <p>{position.description}</p>
                 </div>
+                <div className={style.positionRole}>{position.role}</div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
